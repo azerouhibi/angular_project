@@ -1,0 +1,116 @@
+<button class="btn btn-md btn-outline-primary " style="float: right;margin-bottom: 20px;" (click)="showForm()">
+  <i class="fa fa-user"></i>{{buttonValue}}
+</button>
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+
+    <h4 class="modal-title" id="modal-basic-title">FACTURES SUPRIMEES</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+
+    <form>
+      <div class="row mb-5">
+        <div *ngFor="let facture of ListFacture ;let i =index;"
+          class="col-3 ml-5 mt-3 border about-section-card huver">
+          <img src="../../../../assets/img/facture.jpg" alt="" class="img-fluid">
+          <b class="fa mt-4 mb-2">id Facture :{{facture.idFacture}}</b>
+          <p><b>montant Facture : </b>{{ facture.montantFacture }} DT</p>
+          <div class="row col-12">
+
+            <div class="d-flex">
+              <!-- <button class="btn btn-outline-warning fa btn-md ml-1  " (click)="Activer(facture)"> -->
+              <!-- </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+</ng-template>
+
+
+<!-- <a routerLink="/add-facture">ajouter factures</a> -->
+
+
+<div *ngIf="!showFormTemplate" class="container my-3 w-100" id="about">
+  <div class="col-sm-6" style="margin-top:50px;">
+    <a class="">
+      <button class="btn btn-outline-dark btnAjout fa fa-plus-square " (click)=" GetAllFacture1(); open2(content1)  ">
+        factures Supprimeés
+      </button>
+    </a>
+    <h2>Liste des Factures</h2>
+</div>
+
+  <input [(ngModel)]="searchValue" id="search" class="form-control form-control-navbar search" type="search"
+    placeholder="Search" aria-label="Search" [ngModelOptions]="{standalone: true}">
+  <div class="col-sm-12 row">
+    <div class="col-md-4"
+      *ngFor="let facture of factures| searchfilter:searchValue | paginate: { itemsPerPage: 2, currentPage: p} let i =index; ">
+      <!-- <a class="btn btn-success"
+      [routerLink]="['/updateFacture',facture.idFacture]">Modifier</a> -->
+      <div class="huver">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <strong>id Facture :{{facture.idFacture}}</strong>
+          </div>
+          <div class="card-body">
+            <img src="../../../../assets/img/facture.jpg" alt="" class="img-fluid">
+
+            <h6>montant Facture :{{ facture.montantFacture }} DT</h6>
+
+
+            <p class="card-text"></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <div class="row col-12">
+                  <a class="btn btn-sm btn-info" (click)="open(content2)">Details</a>
+                  <td></td>
+
+                  <ng-template #content2 let-modal>
+
+                    <div class="modal-body">
+                      <form>
+                        <h6>montantRemise :{{ facture.montantRemise }} DT</h6>
+                        <h6>dateFacture :{{ facture.dateFacture| date:'dd/MM/yyyy' }}</h6>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+
+                      <button type="button" class="btn btn-outline-dark"
+                        (click)="modal.close('Save click')">Save</button>
+                    </div>
+                  </ng-template>
+
+                  <button class="btn btn-success" [id]="facture.idFacture"
+                    (click)="div1Function(facture)">{{buttonValue1}}</button>
+
+                  <button class="btn btn-sm btn-danger" (click)="deleteFacture(facture)">Supprimer</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="show==true && i==j">
+              <app-update-facture *ngIf="div1" (notif)="ggf($event)" [id]="facture.idFacture">
+              </app-update-facture>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
+
+
+
+<div *ngIf="showFormTemplate">
+  <app-add-facture (addEvent)="save($event)" [facture]="inputFacture"></app-add-facture>
+</div>

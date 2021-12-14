@@ -1,0 +1,71 @@
+<form class="w-50 mx-auto" #f="ngForm">
+<div class="container">
+    <div>
+        <h2>Ajouter une Facture :</h2>
+    </div>
+
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <label>Montant Facture</label>
+            <input required minlength="3" class="col-sm-8 col-md-8 col-lg-8" type="number" #nt="ngModel"
+                [(ngModel)]="newFacture.montantFacture" name="montantFacture" class="form-control">
+            <div class="alert alert-danger" *ngIf="nt.touched&&nt.invalid">
+                <div *ngIf="nt.hasError('required')">montantFacture is required</div>
+                <div *ngIf="nt.hasError('minlength')">Min Length is 3</div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <label>Montant Remise</label>
+            <input class="col-sm-8 col-md-8 col-lg-8" required minlength="2" type="number" #nd="ngModel"
+                [(ngModel)]="newFacture.montantRemise" name="montantRemise" class="form-control">
+            <div class="alert alert-danger" *ngIf="nd.touched&&nd.invalid">
+                <div *ngIf="nd.hasError('required')">montantRemise required</div>
+                <div *ngIf="nd.hasError('minlength')">montantRemise min length is 2</div>
+            </div>
+        </div>
+        <div class=" col-md-12">
+            <label>Date Facture</label>
+            <input required minlength="3" type="date" [(ngModel)]="newFacture.dateFacture" name="dateFacture"
+                #nq="ngModel" class="form-control">
+            <div class="alert alert-danger" *ngIf="nq.touched&&nq.invalid">
+                <div *ngIf="nq.hasError('required')">Date required</div>
+            </div>
+        </div>
+        <div class="mt-8">
+            <button type="submit" (click)="addFacture()" [disabled]="f.invalid" class="btn btn-success">Ajouter</button>
+        </div>
+
+</div>
+</form>
+<!-- <form [formGroup]="stockForm" (ngSubmit)="addFacture(stockForm.value)">
+    <div class="mb-3">
+      <label for="" class="form-label">Qantité stock</label>
+      <input formControlName="montantFacture" type="number" class="form-control"/>
+      <div *ngIf="montantFacture?.invalid && montantFacture?.touched">
+        <div *ngIf="montantFacture?.errors?.required" class="alert alert-danger">
+          Qantité stock obligatoire
+        </div>
+      </div>
+  
+      <label for="" class="form-label">Quantité minimum du stock</label>
+      <input formControlName="montantRemise" type="number" class="form-control" />
+      <div *ngIf="montantRemise?.invalid && montantRemise?.touched">
+        <div *ngIf="montantRemise?.errors?.required" class="alert alert-danger">
+          Quantité minimum du stock obligatoire
+        </div>
+      </div>
+  
+      <label for="" class="form-label">Libelle stock</label>
+      <input formControlName="dateFacture" type="date" class="form-control" />
+      <div *ngIf="dateFacture?.invalid && dateFacture?.touched">
+        <div *ngIf="dateFacture?.errors?.required" class="alert alert-danger">
+          Libelle stock obligatoire
+        </div>
+        <div *ngIf="dateFacture?.errors?.minlength" class="">
+          Libelle stock doit contenir 3 caractères
+        </div>
+      </div>
+    </div>    
+    <div  class= "border text-center" > 
+      <button  data-dismiss= "modal"  class= "btn btn-info" > Soumettre </button> 
+      </div>
+    </form> -->

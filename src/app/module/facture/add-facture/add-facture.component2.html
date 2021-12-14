@@ -1,0 +1,52 @@
+<form class="w-50 mx-auto" #f="ngForm">
+    <div class="form-group">
+      <label for="Title">Title of the Facture</label>
+      <input type="text" name="Title" id="Title" class="form-control"
+             #nt="ngModel" required minlength="3" [(ngModel)]="newFacture.idFacture">
+      <div class="alert alert-danger" *ngIf="nt.touched&&nt.invalid">
+        <div *ngIf="nt.hasError('required')">Title is required</div>
+        <div *ngIf="nt.hasError('minlength')">Min Length is 3</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="montantFacture">montantFacture</label>
+      <input type="number" name="montantFacture" id="montantFacture" class="form-control"
+      #nd="ngModel" required minlength="3" [(ngModel)]="newFacture.montantFacture"
+      >
+      <div class="alert alert-danger" *ngIf="nd.touched&&nd.invalid">
+        <div *ngIf="nd.hasError('required')">montantFacture required</div>
+        <div *ngIf="nd.hasError('minlength')">montantFacture min length is 3</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="montantRemise">montantRemise</label>
+      <input type="number" name="montantRemise" id="montantRemise" class="form-control"
+             #nq="ngModel" required  [(ngModel)]="newFacture.montantRemise"
+      >
+      <div class="alert alert-danger" *ngIf="nq.touched&&nq.invalid">
+        <div *ngIf="nq.hasError('required')">quantity required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="dateFacture">dateFacture</label>
+      <input type="date" name="dateFacture" id="dateFacture" class="form-control"
+             #nprice="ngModel" required  [(ngModel)]="newFacture.dateFacture"
+      >
+      <div class="alert alert-danger" *ngIf="nprice.touched&&nprice.invalid">
+        <div *ngIf="nprice.hasError('required')">price required</div>
+      </div>
+    </div>
+  
+    
+    <br>
+    <button class="btn btn-outline-success" (click)="addFacture()"
+            >
+      save
+    </button>
+    &nbsp;
+    <!-- <button class="btn btn-outline-warning" (click)="f.reset()">reset</button> -->
+  </form>
+  

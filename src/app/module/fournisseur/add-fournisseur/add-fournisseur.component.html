@@ -1,0 +1,61 @@
+
+<div class="row">
+
+  <div class="col-md-12 col-md-offset-2">
+<form [formGroup]="FournisseurForm" (ngSubmit)="SaveFournisseur(FournisseurForm.value); ngOnInit()  " >
+    <div class="mb-3">
+     
+      <h4><label for="" class="form-label">Code Fournisseur</label></h4>
+      <input formControlName="codeFournisseur" type="text" class="form-control" id="codeFournisseur" >
+      <div *ngIf="codeFournisseur?.errors?.required"  > <span class="help-block" >code  is required.</span> <br>  <br> </div> 
+
+      
+
+      <h4> <label for="" class="form-label">Libelle Fournisseur </label> </h4>
+      <input formControlName="libelleFournisseur" type="text" class="form-control" id="libelleFournisseur">
+
+      <h4> <label for="" class="form-label">Email </label> </h4>
+      <input formControlName="email" type="text" class="form-control" id="email">
+
+      <h4> <label for="" class="form-label">Telephone </label> </h4>
+      <input formControlName="telephone" type="number" class="form-control" id="telephone">
+
+      <h4> <label for="" class="form-label">Adresse </label> </h4>
+      <input formControlName="adresse" type="text" class="form-control" id="adresse">
+      
+      <div class="form-group">
+        <label>File Upload  </label>
+            <input type="file" accept="image/*" (change)="onSelectFile($event)">
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+    </div>
+      <br>
+      <select formControlName="active" class="form-select" aria-label="Default select example" name="active" id="">
+        <option value="">--Please choose an option--</option>
+        <option value=true>true</option>
+        <option value=false>false</option>
+     </select>
+    
+
+     <!-- <div class="form-group">
+      <label for="dateOfBirth">Date of birth</label>
+      <div class="input-group">
+        <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
+    </div> -->
+    
+    
+     </div>
+     
+  <div class="modal-footer">
+
+    <button type="submit" class="btn btn-primary" [disabled]="FournisseurForm.invalid"   >Submit</button>
+  </div>
+
+  </form>
+
+  </div>
+  </div>
+  

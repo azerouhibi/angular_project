@@ -1,0 +1,40 @@
+<div  class="container">
+    <div>
+    <h2>Modifier une Facture :</h2>
+    </div>
+    <form >
+    <div hidden class="col-sm-2 col-md-2 col-lg-2">
+    <label >ID Facture</label>
+    <input  type="text" [(ngModel)]="currentFacture.idFacture"
+    name="idFacture" [ngModelOptions]="{standalone: true}" class="form-control">
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-8" >
+    <label >Montant Facture</label>
+    <input type="number"[(ngModel)]= "currentFacture.montantFacture"
+    name="montantFacture" [ngModelOptions]="{standalone: true}" class="form-control">
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-8">
+    <label >Montant Remise</label>
+    <input type="number" [(ngModel)]= "currentFacture.montantRemise"
+    name="montantRemise" [ngModelOptions]="{standalone: true}" class="form-control">
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-8">
+    <label >Date Facture</label>
+    <input type="date" [ngModel]="currentFacture.dateFacture
+    | date: 'yyyy-MM-dd'"
+    (ngModelChange)=" currentFacture.dateFacture= $event" na
+    me="dateFacture" [ngModelOptions]="{standalone: true}" class="form-control">
+    </div>
+    <ng-template #content let-modal>
+    </ng-template>
+
+    <div class="modal-footer">
+    <div class="mt-2">
+    <button type="submit" (click)="updateFacture();div1Function()" class="btn btn-success">Modifer</button>
+    </div>
+</div>
+
+
+    </form>
+    </div>
+    

@@ -1,0 +1,195 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+
+
+    <h4 class="modal-title" id="modal-basic-title">NEW FOURNISSEUR</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <app-add-fournisseur></app-add-fournisseur>
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+
+
+
+<!-- <label for="searchValue" class="col-sm-2 col-form-label" style="text-align: right ;"> Search </label>
+<input type="text" [(ngModel)]="searchValue" id="search"> -->
+
+<!-- <input type="text" [(ngModel)]="search" (input)="recherche()"> -->
+
+<!-- <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">idFournisseur</th>
+        <th scope="col">Code Fournisseur</th>
+        <th scope="col">Libelle </th>
+        <th scope="col">email </th>
+        <th scope="col">telephone </th>
+        <th scope="col">adresse </th>
+        <th scope="col">active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let li of ListFournisseur | searchFilter:searchValue | paginate: { itemsPerPage: 5, currentPage: p } let i=index;">
+        <th scope="row">{{li.idFournisseur}}</th>
+        <td>{{li.codeFournisseur }}</td>
+        <td>{{li.libelleFournisseur }}</td>
+        <td>{{li.email }}</td>
+        <td>{{li.telephone }}</td>
+        <td>{{li.adresse }}</td>
+
+        <td>{{li.active}}</td>
+      
+        <td>  <button class="btn btn-danger" (click)="Delete(li)"> Delete</button></td>
+        
+
+        
+
+        <td>  <button class="btn btn-primary" (click)="open(up)"> Update</button></td>
+<ng-template #up let-modal>
+  <div class="modal-header">
+
+      
+    <h4 class="modal-title" id="modal-basic-title">Update FOURNISSEUR</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <app-update-fournisseur [id]="li.idFournisseur"> </app-update-fournisseur>
+     
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+      </tr>
+
+
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </tbody>
+
+  </table>
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+<div class="container my-2">
+  <div class="row">
+    <h2>Liste des Fournisseurs disponibles</h2>
+    <div class="offset-7">
+      <a class="col-5">
+        <button class="btn btn-outline-dark btnAjout fa fa-plus-square" (click)="open(content)"> Ajouter
+        </button>
+      </a>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="row offset-6">
+    <div class="input-group">
+      <!-- <div class="form-outline">
+                <input type="search" placeholder="Recherche.." id="form1" class="form-control " />
+            </div>
+            <button type="button" class="btn btn-outline-dark ">
+                <i class="fas fa-search"></i>
+            </button> -->
+      <label for="searchValue" class="col-sm-5 col-form-label" style="text-align: right ;"> Search </label>
+      <input type="text" [(ngModel)]="searchValue" id="search">
+    </div>
+  </div>
+</div>
+<div class="container my-3 w-100" id="about">
+  <div class="row">
+    <div
+      *ngFor="let li of ListFournisseur | searchFilter:searchValue | paginate: { itemsPerPage: 3, currentPage: p } let i=index; "
+      class="col-4 mt-3 border about-section-card">
+      <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid">
+      <b class="fa">Fournisseur :{{ li.libelleFournisseur }}</b>
+      <p><b>code : </b>{{ li.codeFournisseur }}</p>
+      <p><b> adresse :</b> {{ li.adresse }}</p>
+      <div class="row col-12">
+        <a class="btn btn-outline-dark fa btn-md ml-3 col-3">Details</a>
+        <a class="btn btn-outline-warning fa btn-md ml-2 col-4" (click)="open(up)">Modifier</a>
+
+        <!-- POP UPDATE -->
+        <ng-template #up let-modal>
+          <div class="modal-header">
+
+
+            <h4 class="modal-title" id="modal-basic-title">Update FOURNISSEUR</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+
+              <app-update-fournisseur [id]="li.idFournisseur"> </app-update-fournisseur>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+          </div>
+        </ng-template>
+
+
+
+        <a class="btn btn-outline-danger fa  btn-md ml-2 col-4" (click)="Delete(li)">Supprimer</a>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre>{{ closeResult }}</pre>
